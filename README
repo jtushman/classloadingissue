@@ -1,0 +1,22 @@
+== Weirdest Classloading bug ever!!
+
+The issue seems to happen only with the intersection of to Gems.  If you remove either one it works, but both together
+cause the issue
+
+to replicate:
+
+> bundle install
+> rails c
+>> Reductions::ConversionsByBucket.hello
+>> undefined method `hello' for Reductions::ConversionsByBucket:Class
+
+Go to the Gemfile, comment out either
+gem 'inherited_resources', '1.2.2'                                                        # Keeps Controllers neat
+gem 'aws-s3', '0.6.2',:require =>"aws/s3"                                                 # Amazon s3 manipulation
+
+and ...
+> rm Gemfile.lock
+> bundle install
+> rails c
+>> Reductions::ConversionsByBucket.hello
+>> "hello"
