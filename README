@@ -7,8 +7,16 @@ to replicate:
 
 > bundle install
 > rails c
->> Reductions::ConversionsByBucket.hello
->> undefined method `hello' for Reductions::ConversionsByBucket:Class
+
+> Reductions::ConversionsByBucket
+ => Reductions::ConversionsByBucket 
+> Reductions::ConversionsByBucket.hello
+ => NoMethodError: undefined method `hello' for Reductions::ConversionsByBucket:Class
+> require 'reductions/conversions_by_bucket.rb'
+ => nil
+> Reductions::ConversionsByBucket.hello
+ => "hello"
+
 
 Go to the Gemfile, comment out either
 gem 'inherited_resources', '1.2.2'                                                        # Keeps Controllers neat
